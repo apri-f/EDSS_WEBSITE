@@ -1,0 +1,38 @@
+[
+  {
+    "id": 1,
+    "question": "Kurang tertarik atau tidak menikmati melakukan berbagai hal"
+  },
+  {
+    "id": 2,
+    "question": "Merasa sedih, tertekan, atau putus asa"
+  },
+  {
+    "id": 3,
+    "question": "Sulit tidur atau tetap tertidur, atau tidur terlalu banyak"
+  },
+  {
+    "id": 4,
+    "question": "Merasa lelah atau kurang bertenaga"
+  },
+  {
+    "id": 5,
+    "question": "Nafsu makan berkurang atau makan berlebihan"
+  },
+  {
+    "id": 6,
+    "question": "Merasa tidak berharga, merasa gagal, atau merasa telah mengecewakan diri sendiri atau keluarga"
+  },
+  {
+    "id": 7,
+    "question": "Sulit berkonsentrasi pada hal-hal tertentu, seperti membaca koran atau menonton televisi"
+  },
+  {
+    "id": 8,
+    "question": "Bergerak atau berbicara begitu lambat sehingga orang lain mungkin menyadarinya? Atau sebaliknya, begitu gelisah atau tidak tenang sehingga Anda bergerak-gerak jauh lebih banyak dari biasanya."
+  },
+  {
+    "id": 9,
+    "question": "Anda berpikir akan lebih baik jika mati atau ingin menyakiti diri sendiri dengan cara tertentu."
+  }
+]
