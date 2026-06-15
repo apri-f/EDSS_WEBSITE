@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+
+<html class="light" lang="id"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>EDSS | Early Depression Screening System</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+        }
+        .custom-radio:checked {
+            background-image: radial-gradient(circle, currentColor 35%, transparent 35%);
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary-fixed": "#2c0051",
+                        "on-primary-fixed": "#07006c",
+                        "on-primary-fixed-variant": "#2f2ebe",
+                        "surface-tint": "#494bd6",
+                        "inverse-surface": "#283044",
+                        "surface-container-lowest": "#ffffff",
+                        "on-secondary-container": "#fffbff",
+                        "on-primary": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "surface-variant": "#dae2fd",
+                        "outline-variant": "#c7c4d7",
+                        "primary-container": "#6063ee",
+                        "on-surface-variant": "#464554",
+                        "surface-container": "#eaedff",
+                        "surface-container-low": "#f2f3ff",
+                        "on-background": "#131b2e",
+                        "primary-fixed": "#e1e0ff",
+                        "secondary": "#8127cf",
+                        "surface": "#faf8ff",
+                        "error-container": "#ffdad6",
+                        "primary": "#4648d4",
+                        "surface-dim": "#d2d9f4",
+                        "background": "#faf8ff",
+                        "on-tertiary": "#ffffff",
+                        "tertiary-fixed": "#ffd9e4",
+                        "inverse-on-surface": "#eef0ff",
+                        "on-secondary-fixed-variant": "#6900b3",
+                        "secondary-fixed-dim": "#ddb7ff",
+                        "secondary-fixed": "#f0dbff",
+                        "outline": "#767586",
+                        "surface-container-high": "#e2e7ff",
+                        "on-tertiary-container": "#fffbff",
+                        "on-primary-container": "#fffbff",
+                        "tertiary-fixed-dim": "#ffb0cd",
+                        "inverse-primary": "#c0c1ff",
+                        "surface-bright": "#faf8ff",
+                        "primary-fixed-dim": "#c0c1ff",
+                        "on-tertiary-fixed-variant": "#8c0053",
+                        "on-tertiary-fixed": "#3e0022",
+                        "tertiary-container": "#d23284",
+                        "tertiary": "#b10e6b",
+                        "on-surface": "#131b2e",
+                        "secondary-container": "#9c48ea",
+                        "error": "#ba1a1a",
+                        "on-error-container": "#93000a",
+                        "surface-container-highest": "#dae2fd",
+                        "on-error": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "xs": "4px",
+                        "md": "16px",
+                        "gutter": "24px",
+                        "xl": "40px",
+                        "container-max": "1440px",
+                        "lg": "24px",
+                        "unit": "4px",
+                        "sm": "8px",
+                        "margin-mobile": "16px",
+                        "xxl": "64px"
+                    },
+                    "fontFamily": {
+                        "headline-xl": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "label-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-xl": ["48px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "headline-lg": ["32px", {"lineHeight": "1.25", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                        "label-sm": ["12px", {"lineHeight": "1", "fontWeight": "500"}],
+                        "headline-md": ["24px", {"lineHeight": "1.4", "fontWeight": "600"}],
+                        "label-md": ["14px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600"}]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-surface text-on-surface font-body-md overflow-x-hidden min-h-screen">
+<!-- Background Animated Shader -->
+<div class="fixed inset-0 z-[-1]">
+
+<div class="absolute inset-0 bg-gradient-to-tr from-primary/10 via-secondary/5 to-tertiary/10"></div>
+</div>
+<!-- SideNavBar -->
+<aside class="h-screen w-64 fixed left-0 top-0 bg-white/70 backdrop-blur-xl border-r border-white/40 shadow-xl shadow-primary/5 flex flex-col p-md z-30">
+
+    <div class="flex items-center gap-sm mb-xxl">
+        <div class="w-10 h-10 rounded-xl bg-primary-container flex items-center justify-center text-white">
+            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">
+                psychology
+            </span>
+        </div>
+
+        <div>
+            <h1 class="font-headline-md text-headline-md font-bold text-primary">
+                EDSS
+            </h1>
+
+            <p class="text-xs font-label-sm tracking-wider opacity-60">
+                Early Depression Screening System
+            </p>
+        </div>
+    </div>
+
+    <nav class="flex-1 space-y-sm">
+
+        <a
+            class="flex items-center gap-md p-md text-on-surface-variant hover:text-primary hover:bg-primary/10 transition-colors rounded-lg active:scale-95 transition-transform"
+            href="home.html"
+        >
+            <span class="material-symbols-outlined">
+                home
+            </span>
+
+            <span class="font-body-md">
+                Home
+            </span>
+        </a>
+
+        <a
+            class="flex items-center gap-md p-md bg-primary-container text-on-primary-container rounded-lg font-semibold active:scale-95 transition-transform shadow-md"
+            href="assessment.html"
+        >
+            <span
+                class="material-symbols-outlined"
+                style="font-variation-settings: 'FILL' 1;"
+            >
+                assignment
+            </span>
+
+            <span class="font-body-md">
+                Assessment
+            </span>
+        </a>
+
+        <a
+            class="flex items-center gap-md p-md text-on-surface-variant hover:text-primary hover:bg-primary/10 transition-colors rounded-lg active:scale-95 transition-transform"
+            href="result.html"
+        >
+            <span class="material-symbols-outlined">
+                analytics
+            </span>
+
+            <span class="font-body-md">
+                Result
+            </span>
+        </a>
+
+    </nav>
+
+</aside>
+<!-- TopNavBar (As specified in JSON) -->
+<header class="fixed top-0 right-0 left-64 h-16 bg-white/70 backdrop-blur-xl border-b border-white/40 flex items-center justify-between px-lg z-20">
+<h2 class="font-headline-md text-headline-md font-bold text-primary">Assessment PHQ-9</h2>
+<div class="flex items-center gap-lg">
+</div>
+<div class="flex items-center gap-md">
+<button class="p-2 text-on-surface-variant hover:text-primary transition-colors focus-within:ring-2 focus-within:ring-primary/20 rounded-full">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="p-2 text-on-surface-variant hover:text-primary transition-colors focus-within:ring-2 focus-within:ring-primary/20 rounded-full">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+</button>
+<div class="h-10 w-10 rounded-full overflow-hidden border-2 border-primary/20">
+<img alt="User Profile" class="w-full h-full object-cover" data-alt="A professional close-up portrait of a woman in a bright, modern clinic environment with soft natural lighting. She has a serene and confident expression, representing a mental health professional or a patient on a wellness journey. The aesthetic is clean and high-key with soft blues and whites in the background to match the healthcare brand identity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBgJteY-LEnp-pI1tFV3MEB9zHwHJyvqmDC-WAp8tV0-Jyq1azwIBLrhFJLWWhTFgr-MQcF2RNy8DlGT7DtStF2h5mx1CenGv6so6BR94pcOKqOrbpfs_IHcAsBwXBz3ZUIEUF2qTaf0PaqeBH6jsecz7f7WR1PFk3eQpN5CBl9bTFvHwlOabwBK5iCxyCJRQsDQsnj_u1TOnt9_1N2mCNLwU1McmW6V3WkCeYkRTgc33PagWeeme2UDj_UPyhQBbbu4c4rXwnu8H6-"/>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="ml-64 pt-24 pb-xxl px-gutter">
+<div class="max-w-4xl mx-auto">
+<!-- Assessment Header Section -->
+<div class="mb-xl">
+<nav class="flex gap-sm mb-md text-label-sm text-primary font-semibold">
+<span>Assessments</span>
+<span class="material-symbols-outlined !text-[14px]">chevron_right</span>
+<span class="text-on-surface-variant">PHQ-9</span>
+</nav>
+<h2 class="font-headline-lg text-headline-lg text-on-surface mb-sm">Asesmen PHQ-9 (Patient Health Questionnaire-9)</h2>
+<p class="text-body-lg text-on-surface-variant max-w-2xl">
+                    Silakan jawab pertanyaan di bawah ini sesuai dengan kondisi yang Anda rasakan selama 2 minggu terakhir.
+                </p>
+</div>
+<!-- Questionnaire Main Card -->
+<section class="glass-panel rounded-xl p-xl shadow-lg">
+<form class="space-y-xl" id="assessmentForm">
+<!-- Progress Indicator -->
+<div class="mb-xl bg-white/40 p-md rounded-lg flex items-center justify-between">
+<div class="flex items-center gap-sm">
+<div
+    id="progressPercent"
+    class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white font-bold"
+>
+    0%
+</div>
+<div>
+<p class="font-bold text-primary">Kemajuan Asesmen</p>
+<p class="text-label-sm text-on-surface-variant">Selesaikan semua pertanyaan untuk hasil yang akurat</p>
+</div>
+</div>
+<div class="w-48 h-2 bg-primary/10 rounded-full overflow-hidden">
+<div class="h-full bg-gradient-to-r from-primary to-secondary w-0 transition-all duration-500" id="progressBar"></div>
+</div>
+</div>
+<!-- Questions Loop -->
+<div class="space-y-gutter">
+<!-- Q1 -->
+<div class="assessment-question p-md rounded-xl transition-all duration-300 hover:bg-white/30 border border-transparent hover:border-white/50">
+<p class="font-body-md font-semibold text-on-surface mb-md">1. Kurang berminat atau bergairah dalam melakukan sesuatu</p>
+<div class="grid grid-cols-1 md:grid-cols-4 gap-md">
+<label class="flex flex-col items-center p-md rounded-lg border border-primary/10 bg-white/30 cursor-pointer hover:bg-primary/5 transition-all">
+<input class="custom-radio w-5 h-5 text-primary border-primary/20 bg-white/50 focus:ring-primary focus:ring-offset-0 mb-sm" name="q1" type="radio" value="0"/>
+<span class="text-label-sm text-center">Tidak pernah</span>
+</label>
+<label class="flex flex-col items-center p-md rounded-lg border border-primary/10 bg-white/30 cursor-pointer hover:bg-primary/5 transition-all">
+<input class="custom-radio w-5 h-5 text-primary border-primary/20 bg-white/50 focus:ring-primary focus:ring-offset-0 mb-sm" name="q1" type="radio" value="1"/>
+<span class="text-label-sm text-center">Beberapa hari</span>
+</label>
+<label class="flex flex-col items-center p-md rounded-lg border border-primary/10 bg-white/30 cursor-pointer hover:bg-primary/5 transition-all">
+<input class="custom-radio w-5 h-5 text-primary border-primary/20 bg-white/50 focus:ring-primary focus:ring-offset-0 mb-sm" name="q1" type="radio" value="2"/>
+<span class="text-label-sm text-center">Lebih dari separuh hari</span>
+</label>
+<label class="flex flex-col items-center p-md rounded-lg border border-primary/10 bg-white/30 cursor-pointer hover:bg-primary/5 transition-all">
+<input class="custom-radio w-5 h-5 text-primary border-primary/20 bg-white/50 focus:ring-primary focus:ring-offset-0 mb-sm" name="q1" type="radio" value="3"/>
+<span class="text-label-sm text-center">Hampir setiap hari</span>
+</label>
+</div>
+</div>
+<!-- Q2 -->
+<div class="assessment-question p-md rounded-xl transition-all duration-300 hover:bg-white/30 border border-transparent hover:border-white/50">
+<p class="font-body-md font-semibold text-on-surface mb-md">2. Merasa sedih, tertekan, atau putus asa</p>
+<div class="grid grid-cols-1 md:grid-cols-4 gap-md">
+<label class="flex flex-col items-center p-md rounded-lg border border-primary/10 bg-white/30 cursor-pointer hover:bg-primary/5 transition-all">
+<input class="custom-radio w-5 h-5 text-primary border-primary/20 bg-white/50 focus:ring-primary focus:ring-offset-0 mb-sm" name="q2" type="radio" value="0"/>
+<span class="text-label-sm text-center">Tidak pernah</span>
+</label>
+<label class="flex flex-col items-center p-md rounded-lg border border-primary/10 bg-white/30 cursor-pointer hover:bg-primary/5 transition-all">
+<input class="custom-radio w-5 h-5 text-primary border-primary/20 bg-white/50 focus:ring-primary focus:ring-offset-0 mb-sm" name="q2" type="radio" value="1"/>
+<span class="text-label-sm text-center">Beberapa hari</span>
+</label>
+<label class="flex flex-col items-center p-md rounded-lg border border-primary/10 bg-white/30 cursor-pointer hover:bg-primary/5 transition-all">
+<input class="custom-radio w-5 h-5 text-primary border-primary/20 bg-white/50 focus:ring-primary focus:ring-offset-0 mb-sm" name="q2" type="radio" value="2"/>
+<span class="text-label-sm text-center">Lebih dari separuh hari</span>
+</label>
+<label class="flex flex-col items-center p-md rounded-lg border border-primary/10 bg-white/30 cursor-pointer hover:bg-primary/5 transition-all">
+<input class="custom-radio w-5 h-5 text-primary border-primary/20 bg-white/50 focus:ring-primary focus:ring-offset-0 mb-sm" name="q2" type="radio" value="3"/>
+<span class="text-label-sm text-center">Hampir setiap hari</span>
+</label>
+</div>
+</div>
+<!-- Q3 -->
+<div class="assessment-question p-md rounded-xl transition-all duration-300 hover:bg-white/30 border border-transparent hover:border-white/50">
+<p class="font-body-md font-semibold text-on-surface mb-md">3. Sulit tidur atau terlalu banyak tidur</p>
+<div class="grid grid-cols-1 md:grid-cols-4 gap-md">
+<label class="flex flex-col items-center p-md rounded-lg border border-primary/10 bg-white/30 cursor-pointer hover:bg-primary/5 transition-all">
+<input class="custom-radio w-5 h-5 text-primary border-primary/20 bg-white/50 focus:ring-primary focus:ring-offset-0 mb-sm" name="q3" type="radio" value="0"/>
+<span class="text-label-sm text-center">Tidak pernah</span>
+</label>
+<label class="flex flex-col items-center p-md rounded-lg border border-primary/10 bg-white/30 cursor-pointer hover:bg-primary/5 transition-all">
+<input class="custom-radio w-5 h-5 text-primary border-primary/20 bg-white/50 focus:ring-primary focus:ring-offset-0 mb-sm" name="q3" type="radio" value="1"/>
+<span class="text-label-sm text-center">Beberapa hari</span>
+</label>
+<label class="flex flex-col items-center p-md rounded-lg border border-primary/10 bg-white/30 cursor-pointer hover:bg-primary/5 transition-all">
+<input class="custom-radio w-5 h-5 text-primary border-primary/20 bg-white/50 focus:ring-primary focus:ring-offset-0 mb-sm" name="q3" type="radio" value="2"/>
+<span class="text-label-sm text-center">Lebih dari separuh hari</span>
+</label>
+<label class="flex flex-col items-center p-md rounded-lg border border-primary/10 bg-white/30 cursor-pointer hover:bg-primary/5 transition-all">
+<input class="custom-radio w-5 h-5 text-primary border-primary/20 bg-white/50 focus:ring-primary focus:ring-offset-0 mb-sm" name="q3" type="radio" value="3"/>
+<span class="text-label-sm text-center">Hampir setiap hari</span>
+</label>
+</div>
+</div>
+<!-- Q4 -->
+<div class="assessment-question p-md rounded-xl transition-all duration-300 hover:bg-white/30 border border-transparent hover:border-white/50">
+<p class="font-body-md font-semibold text-on-surface mb-md">4. Merasa lelah atau kurang bertenaga</p>
+<div class="grid grid-cols-1 md:grid-cols-4 gap-md">
+<label class="flex flex-col items-center p-md rounded-lg border border-primary/10 bg-white/30 cursor-pointer hover:bg-primary/5 transition-all">
+<input class="custom-radio w-5 h-5 text-primary border-primary/20 bg-white/50 focus:ring-primary focus:ring-offset-0 mb-sm" name="q4" type="radio" value="0"/>
+<span class="text-label-sm text-center">Tidak pernah</span>
+</label>
+<label class="flex flex-col items-center p-md rounded-lg border border-primary/10 bg-white/30 cursor-pointer hover:bg-primary/5 transition-all">
+<input class="custom-radio w-5 h-5 text-primary border-primary/20 bg-white/50 focus:ring-primary focus:ring-offset-0 mb-sm" name="q4" type="radio" value="1"/>
+<span class="text-label-sm text-center">Beberapa hari</span>
+</label>
+<label class="flex flex-col items-center p-md rounded-lg border border-primary/10 bg-white/30 cursor-pointer hover:bg-primary/5 transition-all">
+<input class="custom-radio w-5 h-5 text-primary border-primary/20 bg-white/50 focus:ring-primary focus:ring-offset-0 mb-sm" name="q4" type="radio" value="2"/>
+<span class="text-label-sm text-center">Lebih dari separuh hari</span>
+</label>
+<label class="flex flex-col items-center p-md rounded-lg border border-primary/10 bg-white/30 cursor-pointer hover:bg-primary/5 transition-all">
+<input class="custom-radio w-5 h-5 text-primary border-primary/20 bg-white/50 focus:ring-primary focus:ring-offset-0 mb-sm" name="q4" type="radio" value="3"/>
+<span class="text-label-sm text-center">Hampir setiap hari</span>
+</label>
+</div>
+</div>
+<!-- Q5 -->
+<div class="assessment-question p-md rounded-xl transition-all duration-300 hover:bg-white/30 border border-transparent hover:border-white/50">
+<p class="font-body-md font-semibold text-on-surface mb-md">5. Kurang nafsu makan atau terlalu banyak makan</p>
+<div class="grid grid-cols-1 md:grid-cols-4 gap-md">
+<label class="flex flex-col items-center p-md rounded-lg border border-primary/10 bg-white/30 cursor-pointer hover:bg-primary/5 transition-all">
+<input class="custom-radio w-5 h-5 text-primary border-primary/20 bg-white/50 focus:ring-primary focus:ring-offset-0 mb-sm" name="q5" type="radio" value="0"/>
+<span class="text-label-sm text-center">Tidak pernah</span>
+</label>
+<label class="flex flex-col items-center p-md rounded-lg border border-primary/10 bg-white/30 cursor-pointer hover:bg-primary/5 transition-all">
+<input class="custom-radio w-5 h-5 text-primary border-primary/20 bg-white/50 focus:ring-primary focus:ring-offset-0 mb-sm" name="q5" type="radio" value="1"/>
+<span class="text-label-sm text-center">Beberapa hari</span>
+</label>
+<label class="flex flex-col items-center p-md rounded-lg border border-primary/10 bg-white/30 cursor-pointer hover:bg-primary/5 transition-all">
+<input class="custom-radio w-5 h-5 text-primary border-primary/20 bg-white/50 focus:ring-primary focus:ring-offset-0 mb-sm" name="q5" type="radio" value="2"/>
+<span class="text-label-sm text-center">Lebih dari separuh hari</span>
+</label>
+<label class="flex flex-col items-center p-md rounded-lg border border-primary/10 bg-white/30 cursor-pointer hover:bg-primary/5 transition-all">
+<input class="custom-radio w-5 h-5 text-primary border-primary/20 bg-white/50 focus:ring-primary focus:ring-offset-0 mb-sm" name="q5" type="radio" value="3"/>
+<span class="text-label-sm text-center">Hampir setiap hari</span>
+</label>
+</div>
+</div>
+<!-- Q6 -->
+<div class="assessment-question p-md rounded-xl transition-all duration-300 hover:bg-white/30 border border-transparent hover:border-white/50">
+<p class="font-body-md font-semibold text-on-surface mb-md">6. Merasa tidak berharga, merasa gagal, atau merasa telah mengecewakan diri sendiri atau keluarga</p>
+<div class="grid grid-cols-1 md:grid-cols-4 gap-md">
+<label class="flex flex-col items-center p-md rounded-lg border border-primary/10 bg-white/30 cursor-pointer hover:bg-primary/5 transition-all">
+<input class="custom-radio w-5 h-5 text-primary border-primary/20 bg-white/50 focus:ring-primary focus:ring-offset-0 mb-sm" name="q6" type="radio" value="0"/>
+<span class="text-label-sm text-center">Tidak pernah</span>
+</label>
+<label class="flex flex-col items-center p-md rounded-lg border border-primary/10 bg-white/30 cursor-pointer hover:bg-primary/5 transition-all">
+<input class="custom-radio w-5 h-5 text-primary border-primary/20 bg-white/50 focus:ring-primary focus:ring-offset-0 mb-sm" name="q6" type="radio" value="1"/>
+<span class="text-label-sm text-center">Beberapa hari</span>
+</label>
+<label class="flex flex-col items-center p-md rounded-lg border border-primary/10 bg-white/30 cursor-pointer hover:bg-primary/5 transition-all">
+<input class="custom-radio w-5 h-5 text-primary border-primary/20 bg-white/50 focus:ring-primary focus:ring-offset-0 mb-sm" name="q6" type="radio" value="2"/>
+<span class="text-label-sm text-center">Lebih dari separuh hari</span>
+</label>
+<label class="flex flex-col items-center p-md rounded-lg border border-primary/10 bg-white/30 cursor-pointer hover:bg-primary/5 transition-all">
+<input class="custom-radio w-5 h-5 text-primary border-primary/20 bg-white/50 focus:ring-primary focus:ring-offset-0 mb-sm" name="q6" type="radio" value="3"/>
+<span class="text-label-sm text-center">Hampir setiap hari</span>
+</label>
+</div>
+</div>
+ <!-- Q7 -->
+<div class="assessment-question p-md rounded-xl transition-all duration-300 hover:bg-white/30 border border-transparent hover:border-white/50">
+<p class="font-body-md font-semibold text-on-surface mb-md">7. Sulit berkonsentrasi pada hal-hal tertentu, seperti membaca koran atau menonton televisi</p>
+<div class="grid grid-cols-1 md:grid-cols-4 gap-md">
+<label class="flex flex-col items-center p-md rounded-lg border border-primary/10 bg-white/30 cursor-pointer hover:bg-primary/5 transition-all">
+<input class="custom-radio w-5 h-5 text-primary border-primary/20 bg-white/50 focus:ring-primary focus:ring-offset-0 mb-sm" name="q7" type="radio" value="0"/>
+<span class="text-label-sm text-center">Tidak pernah</span>
+</label>
+<label class="flex flex-col items-center p-md rounded-lg border border-primary/10 bg-white/30 cursor-pointer hover:bg-primary/5 transition-all">
+<input class="custom-radio w-5 h-5 text-primary border-primary/20 bg-white/50 focus:ring-primary focus:ring-offset-0 mb-sm" name="q7" type="radio" value="1"/>
+<span class="text-label-sm text-center">Beberapa hari</span>
+</label>
+<label class="flex flex-col items-center p-md rounded-lg border border-primary/10 bg-white/30 cursor-pointer hover:bg-primary/5 transition-all">
+<input class="custom-radio w-5 h-5 text-primary border-primary/20 bg-white/50 focus:ring-primary focus:ring-offset-0 mb-sm" name="q7" type="radio" value="2"/>
+<span class="text-label-sm text-center">Lebih dari separuh hari</span>
+</label>
+<label class="flex flex-col items-center p-md rounded-lg border border-primary/10 bg-white/30 cursor-pointer hover:bg-primary/5 transition-all">
+<input class="custom-radio w-5 h-5 text-primary border-primary/20 bg-white/50 focus:ring-primary focus:ring-offset-0 mb-sm" name="q7" type="radio" value="3"/>
+<span class="text-label-sm text-center">Hampir setiap hari</span>
+</label>
+</div>
+</div>
+ <!-- Q8 -->
+<div class="assessment-question p-md rounded-xl transition-all duration-300 hover:bg-white/30 border border-transparent hover:border-white/50">
+<p class="font-body-md font-semibold text-on-surface mb-md">8. Bergerak atau berbicara begitu lambat sehingga orang lain mungkin menyadarinya? Atau sebaliknya, begitu gelisah atau tidak tenang sehingga Anda bergerak-gerak jauh lebih banyak dari biasanya</p>
+<div class="grid grid-cols-1 md:grid-cols-4 gap-md">
+<label class="flex flex-col items-center p-md rounded-lg border border-primary/10 bg-white/30 cursor-pointer hover:bg-primary/5 transition-all">
+<input class="custom-radio w-5 h-5 text-primary border-primary/20 bg-white/50 focus:ring-primary focus:ring-offset-0 mb-sm" name="q8" type="radio" value="0"/>
+<span class="text-label-sm text-center">Tidak pernah</span>
+</label>
+<label class="flex flex-col items-center p-md rounded-lg border border-primary/10 bg-white/30 cursor-pointer hover:bg-primary/5 transition-all">
+<input class="custom-radio w-5 h-5 text-primary border-primary/20 bg-white/50 focus:ring-primary focus:ring-offset-0 mb-sm" name="q8" type="radio" value="1"/>
+<span class="text-label-sm text-center">Beberapa hari</span>
+</label>
+<label class="flex flex-col items-center p-md rounded-lg border border-primary/10 bg-white/30 cursor-pointer hover:bg-primary/5 transition-all">
+<input class="custom-radio w-5 h-5 text-primary border-primary/20 bg-white/50 focus:ring-primary focus:ring-offset-0 mb-sm" name="q8" type="radio" value="2"/>
+<span class="text-label-sm text-center">Lebih dari separuh hari</span>
+</label>
+<label class="flex flex-col items-center p-md rounded-lg border border-primary/10 bg-white/30 cursor-pointer hover:bg-primary/5 transition-all">
+<input class="custom-radio w-5 h-5 text-primary border-primary/20 bg-white/50 focus:ring-primary focus:ring-offset-0 mb-sm" name="q8" type="radio" value="3"/>
+<span class="text-label-sm text-center">Hampir setiap hari</span>
+</label>
+</div>
+</div>
+ <!-- Q9 -->
+<div class="assessment-question p-md rounded-xl transition-all duration-300 hover:bg-white/30 border border-transparent hover:border-white/50">
+<p class="font-body-md font-semibold text-on-surface mb-md">9. Anda berpikir akan lebih baik jika mati atau ingin menyakiti diri sendiri dengan cara tertentu</p>
+<div class="grid grid-cols-1 md:grid-cols-4 gap-md">
+<label class="flex flex-col items-center p-md rounded-lg border border-primary/10 bg-white/30 cursor-pointer hover:bg-primary/5 transition-all">
+<input class="custom-radio w-5 h-5 text-primary border-primary/20 bg-white/50 focus:ring-primary focus:ring-offset-0 mb-sm" name="q9" type="radio" value="0"/>
+<span class="text-label-sm text-center">Tidak pernah</span>
+</label>
+<label class="flex flex-col items-center p-md rounded-lg border border-primary/10 bg-white/30 cursor-pointer hover:bg-primary/5 transition-all">
+<input class="custom-radio w-5 h-5 text-primary border-primary/20 bg-white/50 focus:ring-primary focus:ring-offset-0 mb-sm" name="q9" type="radio" value="1"/>
+<span class="text-label-sm text-center">Beberapa hari</span>
+</label>
+<label class="flex flex-col items-center p-md rounded-lg border border-primary/10 bg-white/30 cursor-pointer hover:bg-primary/5 transition-all">
+<input class="custom-radio w-5 h-5 text-primary border-primary/20 bg-white/50 focus:ring-primary focus:ring-offset-0 mb-sm" name="q9" type="radio" value="2"/>
+<span class="text-label-sm text-center">Lebih dari separuh hari</span>
+</label>
+<label class="flex flex-col items-center p-md rounded-lg border border-primary/10 bg-white/30 cursor-pointer hover:bg-primary/5 transition-all">
+<input class="custom-radio w-5 h-5 text-primary border-primary/20 bg-white/50 focus:ring-primary focus:ring-offset-0 mb-sm" name="q9" type="radio" value="3"/>
+<span class="text-label-sm text-center">Hampir setiap hari</span>
+</label>
+</div>
+</div>
+</div>
+<!-- Submission Section -->
+<div class="pt-xl border-t border-primary/10 flex flex-col md:flex-row items-center justify-between gap-lg">
+<div class="flex items-center gap-md text-on-surface-variant italic">
+<span class="material-symbols-outlined text-primary" data-icon="info">info</span>
+<span class="text-label-sm">Jawaban Anda bersifat rahasia dan hanya digunakan untuk analisis medis.</span>
+</div>
+<button
+id="submitAssessment"
+class="w-full md:w-auto py-md px-xxl bg-gradient-to-r from-primary to-secondary text-on-primary rounded-full font-bold shadow-lg shadow-primary/20 hover:shadow-xl hover:scale-105 active:scale-95 transition-all duration-300"
+type="button">
+    Kirim Asesmen
+</button>
+</div>
+</form>
+
+</main>
+</div>
+<script src="../js/assessment.js"></script>
+</body></html>
