@@ -70,7 +70,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 const response =
                     await fetch(
-                        "http://edssprojectbackend-production.up.railway.app/predict",
+                        "https://edssprojectbackend-production.up.railway.app/predict",
                         {
                             method: "POST",
                             headers: {
